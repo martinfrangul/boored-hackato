@@ -1,32 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='max-w-48 flex flex-col m-auto justify-center items-center gap-7 h-screen'>
-      <div className='flex flex-row' >
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="w-20" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="w-20 react" alt="React logo" />
-        </a>
+    <div className="max-w-96 flex flex-col m-auto justify-center items-center gap-3 h-screen">
+      <div className="flex w-full justify-start">
+        LOGO
+        <img src="" alt="" />
+        {/* LOGO */}
       </div>
-      <h1 className='text-4xl underline'>Vite + React</h1>
-      <div className="card">
-        <button className="btn btn-active btn-secondary" onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+      <div className="flex flex-col w-full h-3/4 items-center">
+        <div className="flex flex-row p-10">
+          FILTROS
+        </div>
+        <div className="flex flex-col items-center">
+          <div>
+            IMAGEN
+            <img src="" alt="" />
+          </div>
+          <div className="flex flex-col max-w-60">
+            <div className="w-40 text-center">
+              <h1 className="font-bold font-sans">TROBA ALGUNA COSA A FER</h1>
+            </div>
+            <div className="flex justify-center">
+              <button className="btn btn-sm btn-primary">Generate</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className="flex flex-col w-full h-1/4 items-center">
+        <div>
+          <div className="flex justify-center">
+            <h1>Activitat: </h1>
+          </div>
+          <div>
+            <h3>LA ACTIVIDAD GENERADA</h3>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
