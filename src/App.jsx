@@ -1,6 +1,9 @@
 import "./App.css";
+import useFetchData from "./hooks/useFetchData";
 
 function App() {
+  const { data, loading, error, fetchData } = useFetchData("/api/random");
+
   return (
     <div className="max-w-96 flex flex-col m-auto justify-center items-center gap-3 h-screen">
       <div className="flex w-full justify-start">
@@ -9,9 +12,7 @@ function App() {
         {/* LOGO */}
       </div>
       <div className="flex flex-col w-full h-3/4 items-center">
-        <div className="flex flex-row p-10">
-          FILTROS
-        </div>
+        <div className="flex flex-row p-10">FILTROS</div>
         <div className="flex flex-col items-center">
           <div>
             IMAGEN
@@ -22,7 +23,9 @@ function App() {
               <h1 className="font-bold font-sans">TROBA ALGUNA COSA A FER</h1>
             </div>
             <div className="flex justify-center">
-              <button className="btn btn-sm btn-primary">Generate</button>
+              <button onClick={fetchData} className="btn btn-sm btn-primary">
+                Generate
+              </button>
             </div>
           </div>
         </div>
@@ -33,7 +36,15 @@ function App() {
             <h1>Activitat: </h1>
           </div>
           <div>
-            <h3>LA ACTIVIDAD GENERADA</h3>
+            <h3>
+              {loading
+                ? "Loading..."
+                : data
+                  ? data.activity
+                  : error
+                    ? "Error loading data"
+                    : "No activity generated yet"}
+            </h3>
           </div>
         </div>
       </div>
