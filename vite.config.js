@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://bored-api.appbrewery.com',
+        target: 'https://bored-api.appbrewery.com/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
