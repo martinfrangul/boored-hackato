@@ -1,7 +1,16 @@
 
 # App de generación de actividades
 
-Esta es una aplicación sencilla de React que permite generar actividades al azar o filtrarlas por categorías específicas como "educación", "social", "recreacional", entre otras. Los usuarios pueden seleccionar varios filtros y, si no hay filtros activos, la aplicación generará una actividad aleatoria desde un endpoint específico.
+Esta es una aplicación sencilla que permite generar actividades al azar o filtrarlas por categorías específicas como "educación", "social", "recreacional", entre otras. Los usuarios pueden seleccionar varios filtros y, si no hay filtros activos, la aplicación generará una actividad aleatoria desde un endpoint específico.
+
+## Tecnologías
+
+El proyecta está hecho con React, creado con Vite desde un [template](https://github.com/martinfrangul/Starter-Template-React-Tailwind-DaisyUI) propio.
+Para el diseño se usó Tailwind + DaisyUI.
+
+## Requisitos
+**Node.js**
+Se requiere la versión 14.0.0 o superior.
 
 ## Funcionalidades
 
@@ -46,6 +55,14 @@ Esta es una aplicación sencilla de React que permite generar actividades al aza
     ```
 
 La aplicación estará disponible en `http://localhost:3000`.
+
+## Prueba en Vercel
+
+https://boored-hackato-two.vercel.app/
+
+Se han tenido que hacer unos cambios para que pueda ser usado tando en Vercel como en producción.
+Hay 2 archivos .env cada uno con un entorno diferente (producción y desarrollo).
+
 
 ## Configuración de Vite
 
