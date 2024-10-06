@@ -12,14 +12,13 @@ function App() {
   };
 
   const onGenerateHandler = async () => {
-
-    const API_URL = import.meta.env.VITE_API_URL;
+    
 
     // SI NO HAY NINGÚN FILTRO ACTIVADO LLAMAR AL ENDPOINT RANDOM
 
     if (Object.values(filters).every((isActive) => !isActive)) {
       try {
-        const response = await fetch('/api/bored-api/random');
+        const response = await fetch("/api/random");
         if (!response.ok)
           throw new Error("Error en la solicitud: " + response.statusText);
         const data = await response.json();
@@ -37,7 +36,7 @@ function App() {
       const activeFilters = Object.keys(filters).filter((filter) => filters[filter]);
       const responses = await Promise.all(
         activeFilters.map((filter) =>
-          fetch(`/api/bored-api/filter?type=${filter}`)
+          fetch(`/api/filter?type=${filter}`)
             .then((response) => {
               if (!response.ok) {
                 throw new Error("Error en la solicitud: " + response.statusText);

@@ -56,13 +56,6 @@ Se requiere la versión 14.0.0 o superior.
 
 La aplicación estará disponible en `http://localhost:3000`.
 
-## Prueba en Vercel
-
-https://boored-hackato-two.vercel.app/
-
-Se han tenido que hacer unos cambios para que pueda ser usado tando en Vercel como en producción.
-Hay 2 archivos .env cada uno con un entorno diferente (producción y desarrollo).
-
 
 ## Configuración de Vite
 
