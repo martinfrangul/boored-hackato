@@ -1,103 +1,77 @@
-# React + Vite + TailwindCSS + DaisyUI Starter Template
 
-This is a **starter template** for React projects using [Vite](https://vitejs.dev/), preconfigured with [TailwindCSS](https://tailwindcss.com/) and [DaisyUI](https://daisyui.com/). This template is designed to help you quickly set up a modern, fast, and styled React application.
+# App de generación de actividades
 
-## Features
+Esta es una aplicación sencilla de React que permite generar actividades al azar o filtrarlas por categorías específicas como "educación", "social", "recreacional", entre otras. Los usuarios pueden seleccionar varios filtros y, si no hay filtros activos, la aplicación generará una actividad aleatoria desde un endpoint específico.
 
-- ⚡️ **Vite** as the bundler, providing a fast and lightweight development experience.
-- 🎨 **TailwindCSS** for utility-first, efficient styling.
-- 🌼 **DaisyUI** as a Tailwind plugin for pre-styled and customizable components.
-- 🔥 Ready-to-use configuration to jumpstart your development.
+## Funcionalidades
 
-## Requirements
+- Selección de actividades mediante filtros: Los usuarios pueden elegir entre varias categorías para recibir actividades relacionadas.
+- Generación de actividad aleatoria: Si no se selecciona ningún filtro, la aplicación generará una actividad al azar.
+- Visualización de actividades: Muestra la actividad seleccionada en el área principal de la interfaz.
+- Manejo de errores: Si ocurre un error en la solicitud, el mensaje de error se mostrará en pantalla.
 
-- **Node.js**: >= 14.x
-- **npm**: >= 6.x or **yarn**: >= 1.22.x
+## Componentes
 
-## Getting Started
+### `App`
+- **Estado**:
+  - `filters`: Objeto que contiene los filtros activos.
+  
+  - `error`: Almacena cualquier error ocurrido durante las solicitudes a la API.
+  
+  - `filteredData`: Almacena los datos de actividades filtradas o generadas.
+  
+- **Funciones**:
+  - `onFiltersChange(newFilters)`: Actualiza los filtros según la selección del componente `Filters`.
+  
+  - `onGenerateHandler()`: Llama a la API para generar actividades. Si no hay filtros activos, realiza una solicitud al endpoint `/random`. Si hay filtros activos, hace llamadas simultáneas por cada filtro.
+  
+### `Filters`
+- Muestra botones que permiten activar o desactivar los filtros. Cada botón está asociado a una categoría de actividad.
 
-Follow these steps to use this template in your project:
+## Instalación y Uso
 
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/your-username/your-template-repo.git
-   cd your-template-repo
-   ```
-
-2. **Install dependencies:**
-
-    Using npm:
+1.  Clona el repositorio:
     
-    ```bash
-    npm install
+    ```bash   
+    `git clone https://github.com/martinfrangul/boored-hackato.git` 
     ```
     
-    Or using yarn:
+2.  Instala las dependencias:
     
     ```bash
-    yarn install
+    `npm install` 
+3.  Inicia el servidor de desarrollo:
+    ```bash    
+    `npm run dev` 
     ```
 
-3. **Start the development server:**
+La aplicación estará disponible en `http://localhost:3000`.
 
-    Using npm:
-    
-    ```bash
-    npm run dev
-    ```
-    
-    Or using yarn:
-    
-    ```bash
-    yarn dev
-    ```
+## Configuración de Vite
 
-4. **Build for production:**
+Este proyecto utiliza [Vite](https://vitejs.dev/) para el desarrollo. La configuración de Vite incluye un proxy para resolver problemas de CORS al hacer llamadas a la API.
 
-    Using npm:
-    
-    ```bash
-    npm run build
-    ```
-    
-    Or using yarn:
-    
-    ```bash
-    yarn build
-    ```
+### `vite.config.js`
 
-5. **Preview the production build locally:**
+```bash
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
 
-    Using npm:
-    
-    ```bash
-    npm run serve
-    ```
-    
-    Or using yarn:
-    
-    ```bash
-    yarn serve
-    ```
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://bored-api.appbrewery.com/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
+})
+```
 
-## Customization
+Este proxy redirige las solicitudes a la API a la URL correcta, evitando problemas de CORS durante el desarrollo.
 
-- **TailwindCSS Configuration:** Modify the `tailwind.config.js` file to customize TailwindCSS according to your project needs.
 
-    "I added a color template to customize your own color classes, which is commented out in the `tailwind.config.js` file."
-    
-- **DaisyUI Configuration:** Customize DaisyUI components or theme settings in the `daisyui.config.js` file.
-
-    The dark mode of DaisyUI is disabled by default. To enable it, change this
-    ```bash
-    daisyui: {
-      darkTheme: false,
-    },
-    ```
-    
-    to `true`.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.

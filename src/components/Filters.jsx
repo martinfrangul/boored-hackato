@@ -9,7 +9,7 @@ const Filters = ({onFiltersChange}) => {
         recreational: false,
         charity: false,
         relaxation: false,
-        coocking: false,
+        cooking: false,
         busywork: false,
       });
     
