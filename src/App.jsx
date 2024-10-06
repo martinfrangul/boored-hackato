@@ -19,7 +19,7 @@ function App() {
 
     if (Object.values(filters).every((isActive) => !isActive)) {
       try {
-        const response = await fetch(`${API_URL}/random`);
+        const response = await fetch('/api/bored-api/random');
         if (!response.ok)
           throw new Error("Error en la solicitud: " + response.statusText);
         const data = await response.json();
@@ -37,7 +37,7 @@ function App() {
       const activeFilters = Object.keys(filters).filter((filter) => filters[filter]);
       const responses = await Promise.all(
         activeFilters.map((filter) =>
-          fetch(`${API_URL}/filter?type=${filter}`)
+          fetch(`/api/bored-api/filter?type=${filter}`)
             .then((response) => {
               if (!response.ok) {
                 throw new Error("Error en la solicitud: " + response.statusText);
