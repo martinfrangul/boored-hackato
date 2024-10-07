@@ -14,9 +14,9 @@ function App() {
   const onGenerateHandler = async () => {
     
 
-    // SI NO HAY NINGÚN FILTRO ACTIVADO LLAMAR AL ENDPOINT RANDOM
+    // SI NO HAY NINGÚN FILTRO ACTIVADO O ESTÁN TODOS LOS FILTROS ACTIVADOS LLAMAR AL ENDPOINT RANDOM
 
-    if (Object.values(filters).every((isActive) => !isActive)) {
+    if (Object.values(filters).every((isActive) => !isActive) || Object.values(filters).every((isActive) => isActive)) {
       try {
         const response = await fetch("/api/random");
         if (!response.ok)
@@ -48,6 +48,8 @@ function App() {
     
       const combinedData = responses.flat();
     
+      // GENERAR UNA ACIVIDAD RANDOM DEL CONJUNTO DE ACTIVIDADES SELECCIONADAS POR LOS FILTROS
+
       setFilteredData((prev) => {
         if (combinedData.length > 0) {
           const randomizedData = combinedData[Math.floor(Math.random() * combinedData.length)];
